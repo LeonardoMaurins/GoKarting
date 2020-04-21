@@ -1,0 +1,44 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light blue-grey lighten-5 mb-4">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" style="font-variant:small-caps;font-weight:bold;font-size:36px">KartingD15 |</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto" style="font-size:20px;">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('home') }}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('about') }}">About</a>
+            </li>
+            {#<li class="nav-item active">#}
+                {#<a class="nav-link" href="{{ path('account') }}">People</a>#}
+            {#</li>#}
+            {#<li class="nav-item active">#}
+                {#<a class="nav-link" href="{{ path('race') }}">Highscores</a>#}
+            {#</li>#}
+        </ul>
+
+        <p style="font-weight:bold;font-size:20px;font-style:italic">
+            User Role:
+            {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") or is_granted("ROLE_STAFF")%}
+                <font color="red">{{ app.user.username }}</font>
+            {% else %}
+            <a href="{{ path('logout') }}">Not logged in, return to Login!</a>
+            {% endif %}
+        </p>
+
+        <form class="form-group" style="padding-left:15px" action="{{ path('logout') }}" method="post">
+            <button type="submit" class="btn btn-dark" name="logout-submit">Logout</button>
+        </form>
+    </div>
+</nav>

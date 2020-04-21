@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% set nav_off = true %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper code { background: #f2efe5; padding: 2px 6px; }
+    .error {color: red}
+</style>
+
+    <div class="text-center">
+        <img src="../images/gokartgif.gif" width="600" height="400" class="text-center" alt="logo">
+        <form class="form-group" method="POST" action="{{ path('login') }}">
+            <h1>Login to KartingD15</h1>
+            <input type="hidden" name="action" value="processLogin">
+
+            <div class="form-group">
+                <input type="text" class="col.col-sm-" value="{{ last_username }}" name="_username" placeholder="Username...">
+            </div>
+
+            <div class="form-group">
+                <input type="password" class="col.col-sm-" name="_password" placeholder="Password...">
+            </div>
+            <a href="{{ path('home') }}">Login as guest?</a>
+            <br><br>
+            <input type="submit" value="Login" name="login-submit" class="btn btn-dark">
+            <br><br>
+            {% if error %}
+                <span class="error">{{ error.messageKey }}</span>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}
+
