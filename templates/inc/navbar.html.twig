@@ -20,16 +20,16 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('about') }}">About</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('race') }}">Races</a>
+            </li>
             {#<li class="nav-item active">#}
                 {#<a class="nav-link" href="{{ path('account') }}">People</a>#}
-            {#</li>#}
-            {#<li class="nav-item active">#}
-                {#<a class="nav-link" href="{{ path('race') }}">Highscores</a>#}
             {#</li>#}
         </ul>
 
         <p style="font-weight:bold;font-size:20px;font-style:italic">
-            User Role:
+            Role:
             {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") or is_granted("ROLE_STAFF")%}
                 <font color="red">{{ app.user.username }}</font>
             {% else %}

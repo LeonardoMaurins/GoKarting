@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Staff;
+use App\Entity\Race;
 use App\Repository\UserRepository;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -46,17 +47,23 @@ class MainController extends AbstractController
 //
 //        return $this->render('table/table.html.twig', ['users' => $users]);
 //    }
-//
-//    /**
-//     * @Route("/race", name="race")
-//     */
-//    public function race() {
-//
-//        $users = $this->getDoctrine()->getRepository
-//        (User::class)->findAll();
-//
-//        $departments = [];
-//
-//        return $this->render('table/table.html.twig', ['users' => $users]);
-//    }
+
+    /**
+     * @Route("/race", name="race")
+     */
+    public function race() {
+
+        $races = $this->getDoctrine()->getRepository
+        (Race::class)->findAll();
+
+        $tracks = [];
+
+        foreach($races as $race){
+            if(!in_array($race->getTrack(), $tracks)) {
+                $tracks[] = $race->getTrack();
+            }
+        }
+
+        return $this->render('table/race.html.twig', ['races' => $races, 'tracks' => $tracks]);
+    }
 }

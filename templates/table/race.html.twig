@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+{% set staffdirectory_nav = true %}
+
+    {% block title %}Staff Directory{% endblock %}
+
+    {% block body %}
+
+        <main>
+            <body>
+
+            <div class='table-responsive' align="center">
+
+                <table id="myTable" class="table table-hover table-bordered" style="width:75%">
+
+                    <div style="width:75%;">
+                        <div class="form-group" style="width:100%; float:right; display: inline-block;">
+                            <select id="sel" class="form-control">
+                                <option value="all">All Races</option>
+                                {% for track in tracks %}
+                                    <option value="{{ track }}">{{ track }}</option>
+                                {% endfor %}
+                            </select>
+                            <br>
+                        </div>
+                    </div>
+
+                    <thead class="table table-dark">
+                    <tr>
+                        <th scope="col">Track</th>
+                        <th scope="col">Participant</th>
+                        <th scope="col">Race time</th>
+                        <th scope="col">Finished Race?</th>
+                    </thead>
+
+                    <tbody>
+                    {% for race in races %}
+                        <tr race-track="{{ race.track }}">
+                            {% if race.track == 1 %}
+                                <td>Track One</td>
+                            {% elseif race.track == 2 %}
+                                <td>Track Two</td>
+                            {% else %}
+                                <td>Track Three</td>
+                            {% endif %}
+                            <td>{{ race.user.username }}</td>
+                            <td>{{ race.time }}</td>
+                            {% if race.completion == false %}
+                            <td>No</td>
+                            {% else %}
+                            <td>Yes</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            </div>
+
+            </body>
+        </main>
+
+        <script>
+            function myFunction() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
+
+        <script>
+            $('#sel').on('change', function () {
+                var val = $(this).val();
+
+                if (val === 'all') {
+                    $('#myTable tbody tr').show();
+                } else {
+                    $('#myTable tbody tr').hide();
+                    $('#myTable tr[race-track="' + val + '"]').show();
+                }
+            });
+        </script>
+    {% endblock %}
