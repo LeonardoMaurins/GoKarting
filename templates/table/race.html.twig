@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% set staffdirectory_nav = true %}
 
-    {% block title %}Staff Directory{% endblock %}
+    {% block title %}Races{% endblock %}
 
     {% block body %}
 
@@ -17,7 +17,15 @@
                             <select id="sel" class="form-control">
                                 <option value="all">All Races</option>
                                 {% for track in tracks %}
-                                    <option value="{{ track }}">{{ track }}</option>
+                                    <option value="{{ track }}">
+                                        {% if track == 1 %}
+                                            Race One
+                                            {% elseif track == 2 %}
+                                            Race Two
+                                            {% elseif track == 3 %}
+                                            Race Three
+                                        {% endif %}
+                                    </option>
                                 {% endfor %}
                             </select>
                             <br>
@@ -26,9 +34,9 @@
 
                     <thead class="table table-dark">
                     <tr>
-                        <th scope="col">Track</th>
+                        <th scope="col">Race</th>
                         <th scope="col">Participant</th>
-                        <th scope="col">Race time</th>
+                        <th scope="col">Track time</th>
                         <th scope="col">Finished Race?</th>
                     </thead>
 
@@ -36,11 +44,11 @@
                     {% for race in races %}
                         <tr race-track="{{ race.track }}">
                             {% if race.track == 1 %}
-                                <td>Track One</td>
+                                <td>Race One</td>
                             {% elseif race.track == 2 %}
-                                <td>Track Two</td>
+                                <td>Race Two</td>
                             {% else %}
-                                <td>Track Three</td>
+                                <td>Race Three</td>
                             {% endif %}
                             <td>{{ race.user.username }}</td>
                             <td>{{ race.time }}</td>
@@ -58,27 +66,6 @@
 
             </body>
         </main>
-
-        <script>
-            function myFunction() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
-            }
-        </script>
 
         <script>
             $('#sel').on('change', function () {
