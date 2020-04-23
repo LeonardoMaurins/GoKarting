@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Account Creation{% endblock %}
+
+{% block body %}
+    <div class='table-responsive' align="center">
+
+        <h1>Account Creation</h1>
+        {{ include('people/_form.html.twig') }}
+        <form class="form-group" style="padding-left:15px" action="{{ path('user_index') }}" method="post">
+            <button class="btn btn-dark">Back</button>
+        </form>
+    </div>
+{% endblock %}

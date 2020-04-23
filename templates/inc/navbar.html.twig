@@ -23,17 +23,17 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('race') }}">Races</a>
             </li>
-            {#<li class="nav-item active">#}
-                {#<a class="nav-link" href="{{ path('account') }}">People</a>#}
-            {#</li>#}
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('user_index') }}">People</a>
+            </li>
         </ul>
 
         <p style="font-weight:bold;font-size:20px;font-style:italic">
-            User:
-            {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") or is_granted("ROLE_STAFF")%}
+            Logged in as:
+            {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") or is_granted("ROLE_STAFF") %}
                 <font color="red">{{ app.user.username }}</font>
             {% else %}
-            <a href="{{ path('logout') }}">Not logged in, return to Login!</a>
+                <a href="{{ path('logout') }}">Guest, return to login?</a>
             {% endif %}
         </p>
 

@@ -34,18 +34,34 @@ class MainController extends AbstractController
     public function about() {
         return $this->render('main/about.html.twig');
     }
-//
+
 //    /**
-//     * @Route("/account", name="account")
+//     * @Route("/people", name="people")
 //     */
-//    public function account() {
+//    public function people() {
 //
 //        $users = $this->getDoctrine()->getRepository
 //        (User::class)->findAll();
 //
-//        $departments = [];
+//        $roles = [];
 //
-//        return $this->render('table/table.html.twig', ['users' => $users]);
+//        foreach($users as $user){
+//            if(!in_array($user->getRole(), $roles)) {
+//                $roles[] = $user->getRole();
+//            }
+//        }
+//
+//        return $this->render('people/index.html.twig', ['users' => $users, 'roles' => $roles]);
+//    }
+//
+//    /**
+//     * @Route("/{id}", name="user_show", methods={"GET"})
+//     */
+//    public function show(User $user): Response
+//    {
+//        return $this->render('user/show.html.twig', [
+//            'user' => $user,
+//        ]);
 //    }
 
     /**
@@ -64,6 +80,6 @@ class MainController extends AbstractController
             }
         }
 
-        return $this->render('table/race.html.twig', ['races' => $races, 'tracks' => $tracks]);
+        return $this->render('race/index.html.twig', ['races' => $races, 'tracks' => $tracks]);
     }
 }

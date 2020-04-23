@@ -10,7 +10,6 @@ use App\Entity\User;
 
 class AppFixtures extends Fixture
 {
-
     private $passwordEncoder;
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -75,6 +74,9 @@ class AppFixtures extends Fixture
         $user = new User();
         $user->setUsername($username);
         $user->setRole($role);
+        // If necessary to edit password, you could remove the two lines below and uncomment the first one
+        // Just displaying my ability to encrypt the password to make the website more secure
+//        $user->setPassword($plainPassword);
         $encodedPassword = $this->passwordEncoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
         return $user;

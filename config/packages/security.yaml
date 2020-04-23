@@ -39,4 +39,4 @@ security:
 #         - { path: ^/main, roles: ROLE_USER }
 #         - { path: ^/bustimetable, roles: ROLE_USER }
 #         - { path: ^/map, roles: ROLE_USER }
-#         - { path: ^/table, roles: ROLE_USER }
+#         - { path: ^/race, roles: ROLE_USER }

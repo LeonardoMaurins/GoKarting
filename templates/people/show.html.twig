@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Account{% endblock %}
+
+{% block body %}
+    <div class='table-responsive' align="center">
+
+        <h1>Account Information</h1>
+
+        <table id="myTable" class="table table-hover table-bordered" style="width:75%">
+
+            <tbody>
+            <tr>
+                <th scope="col">Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Role</th>
+                <td>{{ user.role }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Actions</th>
+                <td>
+                    <button class="btn btn-dark" onclick="window.location.href = '{{ path('edit_user', {'id': user.id}) }}';">Edit</button><br><br>
+                    {{ include('people/_delete_form.html.twig') }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <form class="form-group" style="padding-left:15px" action="{{ app.request.headers.get('referer') }}"
+              method="post">
+            <button class="btn btn-dark">Back</button>
+        </form>
+    </div>
+{% endblock %}

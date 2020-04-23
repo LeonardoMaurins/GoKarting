@@ -119,35 +119,4 @@ class User implements UserInterface, \Serializable
             $this->password
             ) = unserialize($string, ['allowed_classes' => false]);
     }
-
-    /**
-     * @return Collection|Race[]
-     */
-    public function getParticipant(): Collection
-    {
-        return $this->participant;
-    }
-
-    public function addParticipant(Race $participant): self
-    {
-        if (!$this->participant->contains($participant)) {
-            $this->participant[] = $participant;
-            $participant->setUsername($this);
-        }
-
-        return $this;
-    }
-
-    public function removeParticipant(Race $participant): self
-    {
-        if ($this->participant->contains($participant)) {
-            $this->participant->removeElement($participant);
-            // set the owning side to null (unless already changed)
-            if ($participant->getUsername() === $this) {
-                $participant->setUsername(null);
-            }
-        }
-
-        return $this;
-    }
 }

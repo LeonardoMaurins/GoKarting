@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+{% set staffdirectory_nav = true %}
+
+    {% block title %}People{% endblock %}
+
+    {% block body %}
+
+        <main>
+            <body>
+
+            <div class='table-responsive' align="center">
+
+                <table id="myTable" class="table table-hover table-bordered" style="width:75%">
+
+                    <!-- Search form -->
+                    <div style="width:75%;">
+                        <div class="form-group" style="width:70%; float:left; display: inline-block;">
+                            <input class="form-control" id="myInput" onkeyup="myFunction()" type="text"
+                                   placeholder="Search for users..." aria-label="Search">
+                        </div>
+
+                        <div class="form-group" style="width:25%; float:right; display: inline-block;">
+                            <select id="sel" class="form-control">
+                                <option value="all">All Roles</option>
+                                {% for role in roles %}
+                                    <option value="{{ role }}">{{ role }}</option>
+                                {% endfor %}
+                            </select>
+                            <br>
+                        </div>
+                    </div>
+
+                    <thead class="table table-dark">
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Actions</th>
+                    </thead>
+
+                    <tbody>
+                    {% for user in users %}
+                        <tr user-role="{{ user.role }}">
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.password }}</td>
+                            <td>{{ user.role }}</td>
+                            <td>
+                                <a href="{{ path('show_user', {'id': user.id}) }}">show</a>
+                                <a href="{{ path('edit_user', {'id': user.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ path('new_user') }}">Create New Account</a>
+            </div>
+            </body>
+        </main>
+
+        <script>
+            function myFunction() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        
+        <script>
+            $('#sel').on('change', function () {
+                var val = $(this).val();
+
+                if (val === 'all') {
+                    $('#myTable tbody tr').show();
+                } else {
+                    $('#myTable tbody tr').hide();
+                    $('#myTable tr[user-role="' + val + '"]').show();
+                }
+            });
+        </script>
+    {% endblock %}
