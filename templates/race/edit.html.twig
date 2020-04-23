@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Race{% endblock %}
+
+{% block body %}
+    {#{% if is_granted(user.role) and user.role != {'id': user.role} == "ROLE_USER" %}#}
+    <div class='table-responsive' align="center">
+
+        <h1>Edit Account</h1>
+        {{ include('race/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('race/_delete.html.twig') }}
+        <form class="form-group" style="padding-left:15px" action="{{ path('race_index') }}" method="post">
+            <button class="btn btn-dark">Back</button>
+        </form>
+    </div>
+{#{% else %}#}
+    {#{{ include('security/accessdenied.html.twig') }}#}
+    {#{% endif %}#}
+{% endblock %}

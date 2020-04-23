@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+<table id="myTable" class="table table-hover table-bordered" style="width:75%">
+
+    <tbody>
+    <tr>
+        <th scope="col">Track</th>
+        <td>{{ form_widget(form.track) }}</td>
+    </tr>
+    <tr>
+        <th scope="col">Username</th>
+        <td>{{ form_widget(form.user) }}</td>
+    </tr>
+    <tr>
+        <th scope="col">Time</th>
+        <td>{{ form_widget(form.time) }}</td>
+    </tr>
+    <tr>
+        <th scope="col">Completion</th>
+        <td>{{ form_widget(form.completion) }}</td>
+    </tr>
+    </tbody>
+</table>
+<button class="btn btn-dark">{{ button_label|default('Save') }}</button><br><br>
+{{ form_end(form) }}

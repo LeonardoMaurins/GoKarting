@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-{% set staffdirectory_nav = true %}
 
     {% block title %}Races{% endblock %}
 
@@ -38,6 +37,7 @@
                         <th scope="col">Participant</th>
                         <th scope="col">Lap time</th>
                         <th scope="col">Finished Race?</th>
+                        <th scope="col">Actions</th>
                     </thead>
 
                     <tbody>
@@ -57,13 +57,17 @@
                             {% else %}
                             <td>Yes</td>
                             {% endif %}
+                            <td>
+                                <button class="btn btn-dark" onclick="window.location.href = '{{ path('show_race', {'id': race.id}) }}';">Show</button>
+                                <button class="btn btn-dark" onclick="window.location.href = '{{ path('edit_race', {'id': race.id}) }}';">Edit</button>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                <button class="btn btn-dark" onclick="window.location.href = '{{ path('new_race') }}';">Create New Race</button>
             </div>
-
             </body>
         </main>
 

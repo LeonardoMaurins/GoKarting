@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('delete_race', {'id': race.id}) }}"
+      onsubmit="return confirm('Confirm race deletion?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn btn-dark">Delete</button><br><br>
+</form>

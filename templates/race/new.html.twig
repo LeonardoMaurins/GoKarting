@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Race Creation{% endblock %}
+
+{% block body %}
+    {% if is_granted("ROLE_STAFF") or is_granted("ROLE_ADMIN") %}
+    <div class='table-responsive' align="center">
+
+        <h1>Race Creation</h1>
+        {{ include('race/_form.html.twig') }}
+        <form class="form-group" style="padding-left:15px" action="{{ path('race_index') }}" method="post">
+            <button class="btn btn-dark">Back</button>
+        </form>
+    </div>
+    {% else %}
+        {{ include('security/accessdenied.html.twig') }}
+    {% endif %}
+{% endblock %}

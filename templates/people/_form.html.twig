@@ -10,10 +10,14 @@
         <th scope="col">Password</th>
         <td>{{ form_widget(form.password) }}</td>
     </tr>
+    {% if is_granted("ROLE_ADMIN") %}
     <tr>
         <th scope="col">Role</th>
         <td>{{ form_widget(form.role) }}</td>
     </tr>
+    {% else %}
+        {% do form.role.setRendered() %}
+    {% endif %}
     </tbody>
 </table>
 <button class="btn btn-dark">{{ button_label|default('Save') }}</button><br><br>

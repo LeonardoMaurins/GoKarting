@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% set staffdirectory_nav = true %}
+
 
     {% block title %}People{% endblock %}
 
@@ -45,14 +45,14 @@
                             <td>{{ user.password }}</td>
                             <td>{{ user.role }}</td>
                             <td>
-                                <a href="{{ path('show_user', {'id': user.id}) }}">show</a>
-                                <a href="{{ path('edit_user', {'id': user.id}) }}">edit</a>
+                                <button class="btn btn-dark" onclick="window.location.href = '{{ path('show_user', {'id': user.id}) }}';">Show</button>
+                                <button class="btn btn-dark" onclick="window.location.href = '{{ path('edit_user', {'id': user.id}) }}';">Edit</button>
                             </td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
-                <a href="{{ path('new_user') }}">Create New Account</a>
+                <button class="btn btn-dark" onclick="window.location.href = '{{ path('new_user') }}';">Create New Account</button>
             </div>
             </body>
         </main>
@@ -79,7 +79,7 @@
         </script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        
+
         <script>
             $('#sel').on('change', function () {
                 var val = $(this).val();

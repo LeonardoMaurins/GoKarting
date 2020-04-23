@@ -1,0 +1,18 @@
+{% block body %}
+    <div class='table-responsive' align="center">
+
+        <img src="../images/accessdenied.png" class="text-center" alt="logo">
+        <h2>Access Denied</h2>
+        <p>You are currently logged in as
+            {% if app.user.username is defined %}
+                "{{ app.user.username }}"  with the role "{{  app.user.role }}".
+                {% else %}
+                Guest.
+            {% endif %}
+            </p>
+        <p>You do not have permission to access this page, please login as an Admin to proceed.</p>
+        <form class="form-group" style="padding-left:15px" action="{{ path('user_index') }}" method="post">
+            <button class="btn btn-dark">Back</button>
+        </form>
+    </div>
+{% endblock %}

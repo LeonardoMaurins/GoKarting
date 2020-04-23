@@ -2,6 +2,9 @@ security:
     encoders:
         App\Entity\User:
             algorithm: bcrypt
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER, ROLE_STAFF
+        ROLE_STAFF: ROLE_USER
     providers:
         my_provider:
             entity:
@@ -35,8 +38,3 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-#        Logged in
-#         - { path: ^/main, roles: ROLE_USER }
-#         - { path: ^/bustimetable, roles: ROLE_USER }
-#         - { path: ^/map, roles: ROLE_USER }
-#         - { path: ^/race, roles: ROLE_USER }

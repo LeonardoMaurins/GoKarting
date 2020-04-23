@@ -108,7 +108,8 @@ class User implements UserInterface, \Serializable
         return serialize([
             $this->id,
             $this->username,
-            $this->password
+            $this->password,
+            $this->role
         ]);
     }
 
@@ -116,7 +117,13 @@ class User implements UserInterface, \Serializable
         list(
             $this->id,
             $this->username,
-            $this->password
+            $this->password,
+            $this->role
             ) = unserialize($string, ['allowed_classes' => false]);
+    }
+
+    public function __toString(): ?string
+    {
+        return $this->username;
     }
 }

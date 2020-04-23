@@ -3,6 +3,7 @@
 {% block title %}Account Creation{% endblock %}
 
 {% block body %}
+    {% if is_granted("ROLE_USER") or is_granted("ROLE_STAFF") or is_granted("ROLE_ADMIN") %}
     <div class='table-responsive' align="center">
 
         <h1>Account Creation</h1>
@@ -11,4 +12,7 @@
             <button class="btn btn-dark">Back</button>
         </form>
     </div>
+    {% else %}
+        {{ include('security/accessdenied.html.twig') }}
+    {% endif %}
 {% endblock %}
