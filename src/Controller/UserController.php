@@ -40,7 +40,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="new_user", methods={"GET","POST"})
+     * @Route("/user/new", name="new_user", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -67,7 +67,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show_user", methods="GET")
+     * @Route("/user/show/{id}", name="show_user", methods="GET")
      */
     public function show(User $user): Response
     {
@@ -77,7 +77,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="edit_user", methods={"GET","POST"})
+     * @Route("/user/{id}/edit", name="edit_user", methods={"GET","POST"})
      */
     public function edit(Request $request, User $user): Response
     {
@@ -101,7 +101,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="delete_user", methods={"DELETE", "POST"})
+     * @Route("/user/{id}", name="delete_user", methods={"DELETE", "POST"})
      */
     public function delete(Request $request, User $user): Response
     {

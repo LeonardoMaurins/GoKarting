@@ -31,7 +31,7 @@ class RaceController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="new_race", methods={"GET","POST"})
+     * @Route("/race/new", name="new_race", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -54,7 +54,7 @@ class RaceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show_race", methods="GET")
+     * @Route("/race/show/{id}", name="show_race", methods="GET")
      */
     public function show(Race $race): Response
     {
@@ -64,7 +64,7 @@ class RaceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="edit_race", methods={"GET","POST"})
+     * @Route("/race/edit/{id}", name="edit_race", methods={"GET","POST"})
      */
     public function edit(Request $request, Race $race): Response
     {
@@ -83,7 +83,7 @@ class RaceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="delete_race", methods={"DELETE", "POST"})
+     * @Route("/race/delete/{id}", name="delete_race", methods={"DELETE", "POST"})
      */
     public function delete(Request $request, Race $race): Response
     {

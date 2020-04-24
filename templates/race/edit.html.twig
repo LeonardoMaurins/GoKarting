@@ -3,7 +3,7 @@
 {% block title %}Edit Race{% endblock %}
 
 {% block body %}
-    {#{% if is_granted(user.role) and user.role != {'id': user.role} == "ROLE_USER" %}#}
+    {% if is_granted("ROLE_STAFF") %}
     <div class='table-responsive' align="center">
 
         <h1>Edit Account</h1>
@@ -13,7 +13,7 @@
             <button class="btn btn-dark">Back</button>
         </form>
     </div>
-{#{% else %}#}
-    {#{{ include('security/accessdenied.html.twig') }}#}
-    {#{% endif %}#}
+{% else %}
+    {{ include('security/accessdenied.html.twig') }}
+    {% endif %}
 {% endblock %}
